@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext)
     return (
         <div className="navbar bg-base-100 bg-neutral text-neutral-content">
             <div className="navbar-start">
@@ -36,7 +38,7 @@ const Header = () => {
                             Services
                             <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
                         </Link>
-                        <ul className="p-2 bg-neutral text-neutral-content">
+                        <ul className="p-2 bg-neutral text-neutral-content z-10">
                             <li><Link to=''>Submenu 1</Link></li>
                             <li><a>Submenu 2</a></li>
                         </ul>
@@ -46,9 +48,30 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to='/login' className='btn btn-outline btn-sm btn-info mr-2'>Sign In</Link>
-                <Link to='/register' className='btn btn-outline btn-sm btn-info'>Sign Up</Link>
-                <Link to='/services' className="btn">Get started</Link>
+                {
+                    user?.uid ?
+                        <><ul className="menu menu-horizontal p-0 bg-neutral text-neutral-content">
+
+                            <li tabIndex={0}>
+                                <Link to='/services'>
+                                    My profile
+                                    <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
+                                </Link>
+                                <ul className="p-2 bg-neutral text-neutral-content z-10">
+                                    <li><Link to=''>My Reviews</Link></li>
+                                    <li><Link to=''>Add Services</Link></li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                            <Link to='/' className='btn btn-outline btn-sm btn-info mr-2'><button onClick={logOut}>Logout</button></Link></>
+                        :
+                        <><Link to='/login' className='btn btn-outline btn-sm btn-info mr-2'>Sign In</Link>
+                            <Link to='/register' className='btn btn-outline btn-sm btn-info'>Sign Up</Link><Link to='/services' className="btn">Get started</Link></>
+                }
+
+
             </div>
 
         </div >
