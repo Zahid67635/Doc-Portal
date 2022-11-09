@@ -8,7 +8,7 @@ import './Slider.css';
 const Slider = () => {
     return (
         <div className='mt-8'>
-            <div className="carousel w-3/4 mx-auto">
+            <div className="carousel md:w-3/4 mx-auto">
                 <div id="slide1" className="carousel-item relative h-1/2 w-full">
                     <div className='slider-img'>
                         <img src={img1} alt='' className="w-full object-cover baler-img" />

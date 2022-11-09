@@ -4,9 +4,10 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 import log from '../../assets/78126-secure-login.json';
 import Lottie from 'lottie-react';
 import useTitle from '../../Hooks/UseTitle';
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
-    const { login } = useContext(AuthContext);
+    const { login, googleSign } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
@@ -20,14 +21,20 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
-
-                console.log(user);
                 navigate(from, { replace: true });
 
             })
             .catch(error => console.log(error));
 
     }
+    const signInWithGoogle = () => {
+        googleSign()
+            .then(res => {
+                const user = res.user;
+                navigate(from, { replace: true });
+            })
+    }
+
     return (
         <div className="w-full my-12">
             <div className="grid gap-20 md:grid-cols-2 flex-col lg:flex-row">
@@ -58,6 +65,9 @@ const Login = () => {
                             <input className="btn btn-primary" type="submit" value="Login" />
                         </div>
                     </form>
+                    <div className='text-center'>
+                        <button onClick={signInWithGoogle} className='btn btn-outline btn-primary'> <p className='mr-3 font-bold'><FaGoogle></FaGoogle></p>Sign In with google</button>
+                    </div>
                     <p className='text-center'>New to DocPort? <Link className='text-orange-600 font-bold' to="/register">Sign Up</Link> </p>
                 </div>
             </div>

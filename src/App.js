@@ -4,7 +4,10 @@ import Main from './layout/Main';
 import Blog from './Pages/Blog/Blog';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login';
+import Notfound from './Pages/NotFound/Notfound';
 import Register from './Pages/Register/Register';
+import Comment from './Pages/Services/Review/Comment';
+import Service from './Pages/Services/Service';
 import Services from './Pages/Services/Services';
 
 function App() {
@@ -15,7 +18,10 @@ function App() {
       children: [
         {
           path: '/',
-          element: <Home></Home>
+          element: <Home></Home>,
+          loader: () => {
+            return fetch('http://localhost:5000/home');
+          }
         },
         {
           path: '/login',
@@ -27,13 +33,33 @@ function App() {
         },
         {
           path: '/services',
-          element: <Services></Services>
+          element: <Services></Services>,
+          loader: () => {
+            return fetch('http://localhost:5000/services');
+          }
         },
+        {
+          path: '/comment',
+          element: <Comment></Comment>
+        },
+        {
+          path: '/services/:id',
+          element: <Service></Service>,
+          loader: ({ params }) => {
+            return fetch(`http://localhost:5000/services/${params.id}`);
+          }
+        },
+
         {
           path: '/blog',
           element: <Blog></Blog>
         }
       ]
+
+    },
+    {
+      path: '*',
+      element: <Notfound></Notfound>
     }
   ])
   return (
