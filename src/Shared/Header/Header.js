@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import { FaDochub } from "react-icons/fa";
 
 const Header = () => {
+
     const { user, logOut } = useContext(AuthContext)
     return (
         <div className="navbar bg-base-100 bg-neutral text-neutral-content">
@@ -28,7 +30,7 @@ const Header = () => {
                         <li><Link to='/register' className='btn btn-outline btn-sm btn-info'>Sign Up</Link></li>
                     </ul>
                 </div>
-                <Link to='/' className="btn btn-ghost normal-case text-xl"><b>DOC-PORT</b></Link>
+                <Link to='/' className="btn btn-ghost normal-case text-xl"><p className='text-3xl'><FaDochub></FaDochub></p><b>OC-PORT</b></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0 bg-neutral text-neutral-content">
@@ -58,7 +60,7 @@ const Header = () => {
                                     <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
                                 </Link>
                                 <ul className="p-2 bg-neutral text-neutral-content z-10">
-                                    <li><Link to=''>My Reviews</Link></li>
+                                    <li><Link to='/myreviews'>My Reviews</Link></li>
                                     <li><Link to=''>Add Services</Link></li>
                                 </ul>
                             </li>

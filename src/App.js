@@ -9,6 +9,7 @@ import Register from './Pages/Register/Register';
 import Comment from './Pages/Services/Review/Comment';
 import Service from './Pages/Services/Service';
 import Services from './Pages/Services/Services';
+import MyReviews from './Shared/MyReviews/MyReviews';
 
 function App() {
   const router = createBrowserRouter([
@@ -48,6 +49,10 @@ function App() {
           loader: ({ params }) => {
             return fetch(`http://localhost:5000/services/${params.id}`);
           }
+        },
+        {
+          path: '/myreviews',
+          element: <MyReviews></MyReviews>
         },
 
         {

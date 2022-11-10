@@ -11,6 +11,7 @@ const Home = () => {
     return (
         <div>
             <Slider></Slider>
+            <h1 className='text-5xl text-center mt-12 font-bold text-green-500'>Our Top Services</h1>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 mx-5'>
                 {
                     services.map(s => <ServiceCard key={s._id} service={s}></ServiceCard>)

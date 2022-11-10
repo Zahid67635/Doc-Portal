@@ -5,6 +5,7 @@ import log from '../../assets/78126-secure-login.json';
 import Lottie from 'lottie-react';
 import useTitle from '../../Hooks/UseTitle';
 import { FaGoogle } from "react-icons/fa";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
     const { login, googleSign } = useContext(AuthContext);
@@ -22,6 +23,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 navigate(from, { replace: true });
+                toast.success('successfully logged in')
 
             })
             .catch(error => console.log(error));
@@ -31,8 +33,10 @@ const Login = () => {
         googleSign()
             .then(res => {
                 const user = res.user;
+                toast.success('successfully logged in');
                 navigate(from, { replace: true });
             })
+            .catch(er => console.log(er))
     }
 
     return (
@@ -70,6 +74,7 @@ const Login = () => {
                     </div>
                     <p className='text-center'>New to DocPort? <Link className='text-orange-600 font-bold' to="/register">Sign Up</Link> </p>
                 </div>
+                <Toaster></Toaster>
             </div>
         </div>
     );
