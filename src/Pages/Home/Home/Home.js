@@ -4,6 +4,7 @@ import { AuthContext } from '../../../Contexts/AuthProvider';
 import useTitle from '../../../Hooks/UseTitle';
 import Emergency from '../Emergency/Emergency';
 import Slider from '../Slider/Slider';
+import Extra from './Extra';
 import ServiceCard from './ServiceCard';
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
         <div>
             <Slider></Slider>
             <div className='divider mt-20 w-3/4 mx-auto'></div>
+            <Extra></Extra>
             <div className=''>
                 <h1 className='text-5xl text-center mt-12 font-bold text-green-500'>Our Top Services</h1>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 mx-5'>
