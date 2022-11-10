@@ -9,6 +9,8 @@ import Register from './Pages/Register/Register';
 import Comment from './Pages/Services/Review/Comment';
 import Service from './Pages/Services/Service';
 import Services from './Pages/Services/Services';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import AddService from './Shared/AddService/AddService';
 import MyReviews from './Shared/MyReviews/MyReviews';
 
 function App() {
@@ -40,6 +42,10 @@ function App() {
           }
         },
         {
+          path: '/add',
+          element: <PrivateRoute><AddService></AddService></PrivateRoute>
+        },
+        {
           path: '/comment',
           element: <Comment></Comment>
         },
@@ -52,7 +58,7 @@ function App() {
         },
         {
           path: '/myreviews',
-          element: <MyReviews></MyReviews>
+          element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute>
         },
 
         {

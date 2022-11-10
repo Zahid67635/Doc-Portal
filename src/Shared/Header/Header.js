@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import { FaDochub } from "react-icons/fa";
@@ -6,6 +6,12 @@ import { FaDochub } from "react-icons/fa";
 const Header = () => {
 
     const { user, logOut } = useContext(AuthContext)
+    const [serviceNum, setServiceNum] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/services')
+            .then(res => res.json())
+            .then(data => setServiceNum(data))
+    }, [])
     return (
         <div className="navbar bg-base-100 bg-neutral text-neutral-content">
             <div className="navbar-start">
@@ -20,8 +26,9 @@ const Header = () => {
                                 Services
                             </Link>
                             <ul className="p-2 bg-neutral text-neutral-content">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
+                                {
+                                    serviceNum.map(n => <li><Link to={`/services/${n._id}`}>{n.name}</Link></li>)
+                                }
                             </ul>
                         </li>
                         <li><Link to='/blog'>Blog</Link></li>
@@ -41,12 +48,16 @@ const Header = () => {
                             <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
                         </Link>
                         <ul className="p-2 bg-neutral text-neutral-content z-10">
-                            <li><Link to=''>Submenu 1</Link></li>
-                            <li><a>Submenu 2</a></li>
+                            {
+                                serviceNum.map(n => <li><Link to={`/services/${n._id}`}>{n.name}</Link></li>)
+                            }
                         </ul>
                     </li>
                     <li><Link to='/blog'>Blog</Link></li>
-
+                    {
+                        user?.uid ? '' : <><li><Link to='/myreviews'>My Reviews</Link></li>
+                            <li><Link to='/add'>Add Services</Link></li></>
+                    }
                 </ul>
             </div>
             <div className="navbar-end">
@@ -61,7 +72,7 @@ const Header = () => {
                                 </Link>
                                 <ul className="p-2 bg-neutral text-neutral-content z-10">
                                     <li><Link to='/myreviews'>My Reviews</Link></li>
-                                    <li><Link to=''>Add Services</Link></li>
+                                    <li><Link to='/add'>Add Services</Link></li>
                                 </ul>
                             </li>
 

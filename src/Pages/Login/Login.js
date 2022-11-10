@@ -22,8 +22,8 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
-                navigate(from, { replace: true });
                 toast.success('successfully logged in')
+                navigate(from, { replace: true });
 
             })
             .catch(error => console.log(error));
@@ -33,8 +33,8 @@ const Login = () => {
         googleSign()
             .then(res => {
                 const user = res.user;
-                toast.success('successfully logged in');
                 navigate(from, { replace: true });
+                toast.success('successfully logged in');
             })
             .catch(er => console.log(er))
     }
