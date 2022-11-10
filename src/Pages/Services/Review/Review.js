@@ -1,8 +1,9 @@
 import React from 'react';
+import useTitle from '../../../Hooks/UseTitle';
 
 const Review = ({ post }) => {
-    const { _id, comment, name, image, email } = post;
-
+    const { comment, name, image } = post;
+    useTitle('Review')
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl">

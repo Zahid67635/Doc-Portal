@@ -26,6 +26,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const googleSign = () => {
+        setLoading(true);
         return signInWithPopup(auth, provider)
     }
     const logOut = () => {
@@ -52,7 +53,8 @@ const AuthProvider = ({ children }) => {
         createUser,
         login,
         logOut,
-        googleSign
+        googleSign,
+        setLoading
     }
 
     return (

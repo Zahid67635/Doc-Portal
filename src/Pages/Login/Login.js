@@ -22,10 +22,28 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
-                toast.success('successfully logged in')
-                navigate(from, { replace: true });
+
+                const currentUser = {
+                    email: user.email
+                }
+
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem('docPort-token', data.token);
+                        toast.success('successfully logged in')
+                        navigate(from, { replace: true });
+                    });
 
             })
+
             .catch(error => console.log(error));
 
     }
@@ -33,9 +51,26 @@ const Login = () => {
         googleSign()
             .then(res => {
                 const user = res.user;
-                navigate(from, { replace: true });
-                toast.success('successfully logged in');
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem('docPort-token', data.token);
+                        toast.success('successfully logged in')
+                        navigate(from, { replace: true });
+                    });
+
             })
+
             .catch(er => console.log(er))
     }
 

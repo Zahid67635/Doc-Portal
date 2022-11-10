@@ -4,6 +4,7 @@ import Review from './Review/Review';
 import { FaCross } from "react-icons/fa";
 import { AuthContext } from '../../Contexts/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
+import useTitle from '../../Hooks/UseTitle';
 
 
 const Service = () => {
@@ -15,7 +16,7 @@ const Service = () => {
             .then(res => res.json())
             .then(data => setReview(data))
     }, [_id])
-
+    useTitle(`${name}`)
     const handlePost = (e) => {
         e.preventDefault()
         const form = e.target;

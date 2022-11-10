@@ -5,7 +5,6 @@ const Comment = () => {
     const handleReview = (e) => {
         e.preventDefault()
 
-
     }
     return (
         <div>

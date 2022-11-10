@@ -1,17 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useTitle from '../../Hooks/UseTitle';
 import ReviewRow from './ReviewRow';
 
 const MyReviews = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     const [myReviews, setMyReviews] = useState([]);
-
+    useTitle('My Reviews')
     useEffect(() => {
-        fetch(`http://localhost:5000/myreviews/?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/myreviews?email=${user?.email}`, {
+            headers: {
+                authorization: `binudun ${localStorage.getItem('docPort-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    logout()
+                }
+                return res.json()
+            })
             .then(data => {
                 setMyReviews(data)
-                console.log(data);
+                console.log(myReviews);
             })
     }, [user?.email])
     return (
