@@ -24,6 +24,25 @@ const MyReviews = () => {
                 console.log(myReviews);
             })
     }, [user?.email])
+
+
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure, you want to cancel this review');
+        if (proceed) {
+            fetch(`http://localhost:5000/review/${id}`, {
+                method: 'DELETE',
+
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        alert('deleted successfully');
+                        const remaining = myReviews.filter(odr => odr._id !== id);
+                        setMyReviews(remaining);
+                    }
+                })
+        }
+    }
     return (
         <div className='mb-32 ml-4'>
 
@@ -32,9 +51,11 @@ const MyReviews = () => {
                     <table className="table w-full">
                         <thead>
                             <tr>
+
                                 <th>User detail</th>
                                 <th>Comment</th>
                                 <th>Service Name</th>
+                                <th>Delete/Update</th>
 
                             </tr>
                         </thead>
@@ -43,6 +64,7 @@ const MyReviews = () => {
                                 myReviews.map(r => <ReviewRow
                                     key={r._id}
                                     review={r}
+                                    handleDelete={handleDelete}
 
                                 ></ReviewRow>)
                             }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const ReviewRow = ({ review }) => {
+const ReviewRow = ({ review, handleDelete }) => {
     const { _id, myname, image, comment, email, name } = review;
 
     const [orderService, setOrderService] = useState({})
@@ -15,11 +15,6 @@ const ReviewRow = ({ review }) => {
     }, [email])
     return (
         <tr>
-            {/* <th>
-                <label>
-                    <button onClick={() => handleDelete(_id)} className='btn btn-ghost'>X</button>
-                </label>
-            </th> */}
             <td>
                 <div className="flex items-center space-x-3">
                     <div className="avatar">
@@ -36,11 +31,16 @@ const ReviewRow = ({ review }) => {
 
             <td>{comment}</td>
             <td>{name}</td>
-            <th>
-                {/* <button
-                    onClick={() => handleStatusUpdate(_id)}
-                    className="btn btn-ghost btn-xs">{status ? status : 'pending'}</button> */}
-            </th>
+            <td>
+                <button onClick={() => handleDelete(_id)} className='btn btn-danger'>X</button>
+                <button
+                    className="btn btn-ghost btn-xl ml-2">Edit</button>
+            </td>
+            <td>
+
+
+
+            </td>
         </tr>
     );
 };
