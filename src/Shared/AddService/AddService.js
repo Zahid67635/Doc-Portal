@@ -15,7 +15,7 @@ const AddService = () => {
             name, serviceCost, image: photoUrl, detail
         }
 
-        fetch('http://localhost:5000/services', {
+        fetch('https://doc-port-server.vercel.app/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -6,7 +6,7 @@ const ReviewRow = ({ review, handleDelete }) => {
     const [orderService, setOrderService] = useState({})
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myreviews/?email=${email}`)
+        fetch(`https://doc-port-server.vercel.app/myreviews/?email=${email}`)
             .then(res => res.json())
             .then(data => {
                 setOrderService(data)

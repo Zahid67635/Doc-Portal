@@ -8,7 +8,7 @@ const MyReviews = () => {
     const [myReviews, setMyReviews] = useState([]);
     useTitle('My Reviews')
     useEffect(() => {
-        fetch(`http://localhost:5000/myreviews?email=${user?.email}`, {
+        fetch(`https://doc-port-server.vercel.app/myreviews?email=${user?.email}`, {
             headers: {
                 authorization: `binudun ${localStorage.getItem('docPort-token')}`
             }
@@ -29,7 +29,7 @@ const MyReviews = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure, you want to cancel this review');
         if (proceed) {
-            fetch(`http://localhost:5000/review/${id}`, {
+            fetch(`https://doc-port-server.vercel.app/review/${id}`, {
                 method: 'DELETE',
 
             })

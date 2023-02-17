@@ -23,7 +23,7 @@ function App() {
           path: '/',
           element: <Home></Home>,
           loader: () => {
-            return fetch('http://localhost:5000/home');
+            return fetch('https://doc-port-server.vercel.app/home');
           }
         },
         {
@@ -38,7 +38,7 @@ function App() {
           path: '/services',
           element: <Services></Services>,
           loader: () => {
-            return fetch('http://localhost:5000/services');
+            return fetch('https://doc-port-server.vercel.app/services');
           }
         },
         {
@@ -53,7 +53,7 @@ function App() {
           path: '/services/:id',
           element: <Service></Service>,
           loader: ({ params }) => {
-            return fetch(`http://localhost:5000/services/${params.id}`);
+            return fetch(`https://doc-port-server.vercel.app/services/${params.id}`);
           }
         },
         {

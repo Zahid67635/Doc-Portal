@@ -8,7 +8,7 @@ const Header = () => {
     const { user, logOut } = useContext(AuthContext)
     const [serviceNum, setServiceNum] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://doc-port-server.vercel.app/services')
             .then(res => res.json())
             .then(data => setServiceNum(data))
     }, [])
@@ -55,8 +55,8 @@ const Header = () => {
                     </li>
                     <li><Link to='/blog'>Blog</Link></li>
                     {
-                        user?.uid ? '' : <><li><Link to='/myreviews'>My Reviews</Link></li>
-                            <li><Link to='/add'>Add Services</Link></li></>
+                        user?.uid ? <><li><Link to='/myreviews'>My Reviews</Link></li>
+                            <li><Link to='/add'>Add Services</Link></li></> : ''
                     }
                 </ul>
             </div>
@@ -81,7 +81,7 @@ const Header = () => {
                             <Link to='/' className='btn btn-outline btn-sm btn-info mr-2'><button onClick={logOut}>Logout</button></Link></>
                         :
                         <><Link to='/login' className='btn btn-outline btn-sm btn-info mr-2'>Sign In</Link>
-                            <Link to='/register' className='btn btn-outline btn-sm btn-info'>Sign Up</Link><Link to='/services' className="btn">Get started</Link></>
+                            <Link to='/register' className='btn btn-outline btn-sm btn-info'>Sign Up</Link></>
                 }
 
 

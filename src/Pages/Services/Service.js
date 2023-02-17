@@ -12,7 +12,7 @@ const Service = () => {
     const [review, setReview] = useState([]);
     const { user } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`http://localhost:5000/review/${_id}`)
+        fetch(`https://doc-port-server.vercel.app/review/${_id}`)
             .then(res => res.json())
             .then(data => setReview(data))
     }, [_id])
@@ -25,7 +25,7 @@ const Service = () => {
         const data = { comment, email, myname: user?.displayName, image: user.photoURL, name };
         console.log(data);
 
-        fetch(`http://localhost:5000/review/${_id}`, {
+        fetch(`https://doc-port-server.vercel.app/review/${_id}`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
